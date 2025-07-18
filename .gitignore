@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build output
+client/build/
+client/dist/
+server/dist/
+
+# Environment files
+.env
+server/.env
+client/.env
+
+# SQLite database
+server/database.sqlite
+
+# Uploads
+server/uploads/
+
+# Logs
+*.log 
