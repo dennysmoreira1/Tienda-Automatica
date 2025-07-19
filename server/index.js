@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
-        ? ['https://tu-frontend-url.vercel.app', 'http://localhost:3000']
+        ? ['https://tienda-automatica-1oulsndpu-dennys-alejandros-projects.vercel.app', 'http://localhost:3000']
         : 'http://localhost:3000',
     credentials: true
 }));
