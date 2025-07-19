@@ -10,7 +10,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production'
+        ? ['https://tu-frontend-url.vercel.app', 'http://localhost:3000']
+        : 'http://localhost:3000',
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
@@ -405,7 +410,7 @@ app.delete('/api/products/:id', (req, res) => {
 // Orders (updated to include customer authentication)
 app.get('/api/orders', (req, res) => {
     db.all(`
-    SELECT o.*, 
+    SELECT o.*,
            c.name as customer_name,
            c.email as customer_email,
            c.phone as customer_phone,
@@ -428,7 +433,7 @@ app.get('/api/orders', (req, res) => {
 // Get customer's own orders
 app.get('/api/customers/orders', authenticateCustomer, (req, res) => {
     db.all(`
-    SELECT o.*, 
+    SELECT o.*,
            GROUP_CONCAT(p.name || ' (x' || oi.quantity || ')') as items
     FROM orders o
     LEFT JOIN order_items oi ON o.id = oi.order_id
