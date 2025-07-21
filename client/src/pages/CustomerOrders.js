@@ -18,25 +18,25 @@ const CustomerOrders = () => {
             return;
         }
 
-        fetchOrders();
-    }, [navigate, isAuthenticated, fetchOrders]);
+        const fetchOrders = async () => {
+            try {
+                const token = getToken();
+                const response = await axios.get('/api/customers/orders', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                setOrders(response.data);
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+                toast.error('Error al cargar los pedidos');
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    const fetchOrders = async () => {
-        try {
-            const token = getToken();
-            const response = await axios.get('/api/customers/orders', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            setOrders(response.data);
-        } catch (error) {
-            console.error('Error fetching orders:', error);
-            toast.error('Error al cargar los pedidos');
-        } finally {
-            setLoading(false);
-        }
-    };
+        fetchOrders();
+    }, [navigate, isAuthenticated, getToken]);
 
     const getStatusIcon = (status) => {
         switch (status) {
