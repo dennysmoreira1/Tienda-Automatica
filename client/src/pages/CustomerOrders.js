@@ -8,7 +8,7 @@ import axios from 'axios';
 const CustomerOrders = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { customer, getToken, isAuthenticated } = useCustomerAuth();
+    const { getToken, isAuthenticated } = useCustomerAuth();
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,7 @@ const CustomerOrders = () => {
         }
 
         fetchOrders();
-    }, [navigate, isAuthenticated]);
+    }, [navigate, isAuthenticated, fetchOrders]);
 
     const fetchOrders = async () => {
         try {

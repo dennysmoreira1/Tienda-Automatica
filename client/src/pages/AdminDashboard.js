@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaBox, FaDollarSign, FaClock, FaEye } from 'react-icons/fa';
+import { FaShoppingCart, FaBox } from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';

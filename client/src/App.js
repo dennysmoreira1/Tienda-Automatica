@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
