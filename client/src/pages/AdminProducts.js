@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaImage, FaUpload, FaTimes } from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { getImageUrl } from '../config';
 
 const AdminProducts = () => {
     const [products, setProducts] = useState([]);
@@ -131,7 +132,7 @@ const AdminProducts = () => {
             stock: product.stock.toString(),
             image: product.image || ''
         });
-        setImagePreview(product.image ? `http://localhost:5000${product.image}` : '');
+        setImagePreview(product.image ? getImageUrl(product.image) : '');
         setImageFile(null);
         setShowForm(true);
     };
@@ -366,7 +367,7 @@ const AdminProducts = () => {
                         }}>
                             {product.image ? (
                                 <img
-                                    src={`http://localhost:5000${product.image}`}
+                                    src={getImageUrl(product.image)}
                                     alt={product.name}
                                     style={{
                                         maxWidth: '100%',
