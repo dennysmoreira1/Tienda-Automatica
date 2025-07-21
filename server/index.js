@@ -9,6 +9,8 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 // Middleware
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
